@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ajouter un vehicule</title>
+    <title>Ajouter une equipe</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
-			<h2 class="col-12 text-center" style="color:white;">Ajouter un vehicule</h2>
+			<h2 class="col-12 text-center" style="color:white;">Ajouter une equipe</h2>
 		</div>
 		<section class="content" >
 
@@ -41,11 +41,6 @@
                                     </select>
                                 </div>
                         </div>
-						<div class="form-group <?=form_error('jour') ? 'has-error':null?>">
-							<label for="">Jour:</label>
-							<input type="number" min="1" name="jour" value="<?=set_value('jour')?>" class="form-control">
-							<span class="help-block"><?=form_error('designation')?></span> 
-						</div>
 						<div class="form-group">
                             <label for="">Pilote:</label>
                                 <div class="form-select" id="default-select">
@@ -68,11 +63,17 @@
                                     </select>
                                 </div>
                         </div>
-						<div class="form-group <?=form_error('numero') ? 'has-error':null?>">
-							<label for="">Numero du vehicule:</label>
-							<input type="text" name="numero" value="<?=set_value('numero')?>" class="form-control">
-							<span class="help-block"><?=form_error('numero')?></span> 
-						</div>
+						<div class="form-group">
+                            <label for="">Numero du vehicule:</label>
+                                <div class="form-select" id="default-select">
+                                    <select id="numero" name="numero">
+                                        <option value ="0" >choisir</option>
+                                            <?php foreach($vehicule as $row) { ?>
+                                        <option value="<?php echo $row->numero?>"><?php echo $row->numero?></option>
+                                            <?php } ?>
+                                    </select>
+                                </div>
+                        </div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-success btn-flat">Ajouter</button>
 						</div>

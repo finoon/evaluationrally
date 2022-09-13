@@ -17,8 +17,22 @@ class Admin extends CI_Controller{
 			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
 			$data['participants'] = $this->Fonction_m->getParticipant();
 			$data['rally'] = $this->Fonction_m->getNomRally();
+			$data['vehicule'] = $this->Fonction_m->getVehicule();
             $this->load->view('admin/header',$data);
 			$this->load->view('admin/ajoutvehicule',$data);
+			$this->load->view('admin/footer');
+		}else{
+			$this->load->view('admin/login');
+		}
+	}
+
+	public function rally(){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');  
+			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
+			$data['category'] = $this->Fonction_m->getCategory();
+            $this->load->view('admin/header',$data);
+			$this->load->view('admin/ajoutrally',$data);
 			$this->load->view('admin/footer');
 		}else{
 			$this->load->view('admin/login');
@@ -69,6 +83,16 @@ class Admin extends CI_Controller{
 		$this->Fonction_m->getNomRally($id);
 	}
 
+	public function getVehicules($id){
+		$this->load->model('Fonction_m');
+		$this->Fonction_m->getVehicule($id);
+	}
+
+	public function getCategorys($id){
+		$this->load->model('Fonction_m');
+		$this->Fonction_m->getCategory($id);
+	}
+
     public function logout(){
 		if($this->session->userdata('name')){
 			$this->session->unset_userdata('id'); 
@@ -84,11 +108,20 @@ class Admin extends CI_Controller{
 	public function addvehicule(){
 		if($this->session->userdata('email')){
 			$this->load->model('Fonction_m');  
-			$this->Fonction_m->insert_vehicule($this->input->post('rally'),$this->input->post('jour'),$this->input->post('participant1'),$this->input->post('participant2'),$this->input->post('numero'));
-			redirect('admin/tarif');
-		}else{
-			$this->load->view('admin/login');
+			$this->Fonction_m->insert_vehicule($this->input->post('rally'),$this->input->post('participant1'),$this->input->post('participant2'),$this->input->post('numero'));
+			echo "<script>alert('Nouvelle equipe cree');</script>";
 		}
+			echo "<script>window.location='".site_url('admin/index')."';</script>";
+		
 	}
 
+	public function addrally(){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');  
+			$this->Fonction_m->insert_rallye($this->input->post('modrally'),$this->input->post('coefficient'),$this->input->post('nbjour'),$this->input->post('category'));
+			echo "<script>alert('Nouveau rallye cree');</script>";
+		}
+			echo "<script>window.location='".site_url('admin/index')."';</script>";
+		
+	}
 }

@@ -110,10 +110,10 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
                     <li>
-                        <a href="<?=site_url('admin/index')?>"><i class="fa fa-truck"></i> <span>Ajouter un vehicule</span></a>
+                        <a href="<?=site_url('admin/index')?>"><i class="fa fa-users"></i> <span>Ajouter une equipe</span></a>
                     </li>
                     <li>
-                        <a href="<?=site_url('admin/tarif')?>"><i class="fa fa-archive"></i> <span>Tarif</span></a>
+                        <a href="<?=site_url('admin/rally')?>"><i class="fa fa-archive"></i> <span>Ajouter un rallye</span></a>
                     </li>
                     <li>
                         <a href="<?php echo base_url()?>admin/validationRecharge?>">

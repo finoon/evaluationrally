@@ -46,12 +46,29 @@ class Fonction_m extends CI_Model{
         return $query->result();
     }
 
-    public function insert_vehicule($rally,$jour,$pilote,$copilote,$numero){
+    public function getVehicule(){
+        $query = $this->db->get('vehicule');
+        return $query->result();
+    }
+
+    public function getCategory(){
+        $query = $this->db->get('category');
+        return $query->result();
+    }
+
+    public function insert_rallye($nomrally,$coefficient,$nbjour,$category){
+        $data = array(
+            'nomrally' => $nomrally,
+            'coefficient' => $coefficient,
+            'nbjour' => $nbjour,
+            'idcategory' => $category,
+            'date' => now()
+        );
+    }
+
+    public function insert_vehicule($rally,$pilote,$copilote,$numero){
         $data = array (
             'idrally' => $rally,
-            'jour' => $jour,
-            'temps' => null,
-            'point' => null,
             'pilote' => $pilote,
             'copilote' => $copilote,
             'numerovehicule' => $numero
