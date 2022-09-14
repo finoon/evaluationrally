@@ -40,10 +40,10 @@
 							<input type="number" name="coefficient" value="<?=set_value('coefficient')?>" class="form-control">
 							<span class="help-block"><?=form_error('coefficient')?></span> 
 						</div>
-                        <div class="form-group <?=form_error('nbjour') ? 'has-error':null?>">
+                        <div class="form-group <?=form_error('journ') ? 'has-error':null?>">
 							<label for="">Nombres de jours:</label>
-							<input type="number" name="nbjour" value="<?=set_value('nbjour')?>" class="form-control">
-							<span class="help-block"><?=form_error('nbjour')?></span> 
+							<input type="number" name="journ" value="<?=set_value('journ')?>" class="form-control">
+							<span class="help-block"><?=form_error('journ')?></span> 
 						</div>
                         <div class="form-group">
                             <label for="">Categorie:</label>
@@ -56,6 +56,11 @@
                                     </select>
                                 </div>
                         </div>
+						<div class="form-group <?=form_error('ladate') ? 'has-error':null?>">
+							<label for="">Date:</label>
+							<input type="date" name="ladate" value="<?=set_value('ladate')?>" class="form-control">
+							<span class="help-block"><?=form_error('ladate')?></span> 
+						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-success btn-flat">Ajouter</button>
 						</div>

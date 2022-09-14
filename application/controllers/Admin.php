@@ -39,6 +39,34 @@ class Admin extends CI_Controller{
 		}
 	}
 
+	public function tempsfin(){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');
+			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
+			//$data['pointrally'] = $this->Fonction_m->getPointRally();
+			$data['pointetrally'] = $this->Fonction_m->getPointEtRally();
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/ajouttempsfin',$data);
+			$this->load->view('admin/footer');
+		}else{
+			$this->load->view('admin/login');
+		}
+	}
+
+	public function gestPoint(){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');
+			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
+			//$data['pointrally'] = $this->Fonction_m->getPointRally();
+			$data['listeClassement']=$this->Fonction_m->getClass();
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/point',$data);
+			$this->load->view('admin/footer');
+		}else{
+			$this->load->view('admin/login');
+		}
+	}
+
     
     public function login(){
 		$this->load->view('admin/login');
@@ -93,6 +121,11 @@ class Admin extends CI_Controller{
 		$this->Fonction_m->getCategory($id);
 	}
 
+	public function getPointRallys($id){
+		$this->load->model('Fonction_m');
+		$this->Fonction_m->getPointRally($id);
+	}
+
     public function logout(){
 		if($this->session->userdata('name')){
 			$this->session->unset_userdata('id'); 
@@ -118,8 +151,18 @@ class Admin extends CI_Controller{
 	public function addrally(){
 		if($this->session->userdata('email')){
 			$this->load->model('Fonction_m');  
-			$this->Fonction_m->insert_rallye($this->input->post('modrally'),$this->input->post('coefficient'),$this->input->post('nbjour'),$this->input->post('category'));
+			$this->Fonction_m->insert_rallye($this->input->post('modrally'),$this->input->post('coefficient'),$this->input->post('journ'),$this->input->post('idcategory'),$this->input->post('ladate'));
 			echo "<script>alert('Nouveau rallye cree');</script>";
+		}
+			echo "<script>window.location='".site_url('admin/index')."';</script>";
+		
+	}
+
+	public function addTempsFin(){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');  
+			$this->Fonction_m->insert_temps_fin($this->input->post('nummod'),$this->input->post('temps'),$this->input->post('jour'));
+			echo "<script>alert('Nouveau temps cree');</script>";
 		}
 			echo "<script>window.location='".site_url('admin/index')."';</script>";
 		

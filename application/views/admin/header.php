@@ -116,14 +116,13 @@
                         <a href="<?=site_url('admin/rally')?>"><i class="fa fa-archive"></i> <span>Ajouter un rallye</span></a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url()?>admin/validationRecharge?>">
-                            <i class="fa fa-users"></i> <span>Demandes</span>
+                        <a href="<?php echo base_url()?>admin/tempsfin">
+                            <i class="fa fa-clock-o"></i> <span>Ajout un temps de fin</span>
                         </a>
                     </li>
-
                     <li>
-                        <a href="<?php echo base_url()?>admin/changementHeure">
-                            <i class="fa fa-clock-o"></i> <span>Heure actuel</span>
+                        <a href="<?php echo base_url()?>admin/gestPoint?>">
+                            <i class="fa fa-users"></i> <span>Gestion de point</span>
                         </a>
                     </li>
                 </ul>

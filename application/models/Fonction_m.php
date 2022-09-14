@@ -56,14 +56,50 @@ class Fonction_m extends CI_Model{
         return $query->result();
     }
 
-    public function insert_rallye($nomrally,$coefficient,$nbjour,$category){
+    public function getPointRally(){
+        $query = $this->db->get('pointrally');
+        return $query->result();
+    }
+
+    public function getPointEtRally(){
+        $sql = "select * from rally left join pointrally on rally.id=pointrally.idrally";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+    public function getClass(){
+        $sql = "select * from jour join pointrally on jour.idpointrally=pointrally.id join participant on participant.id=pointrally.copilote join rally on rally.id=pointrally.idrally";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+    public function getPseudoParticipant($id){
+        $query = $this->db->query("SELECT pseudo FROM participant WHERE id=".$id);
+        $result = $query->row_array();
+        $pseudo = $result['pseudo'];
+        return $pseudo;
+    }
+
+    public function insert_temps_fin($pointrally,$temps,$jour){
+        $data = array(
+            'idpointrally' => $pointrally,
+            'temps' => $temps,
+            'jour' => $jour,
+            'point' => 0,
+        );
+        $this->db->insert('jour', $data);
+
+    }
+
+    public function insert_rallye($nomrally,$coefficient,$nbjour,$category,$date){
         $data = array(
             'nomrally' => $nomrally,
-            'coefficient' => $coefficient,
+            'coefficientrally' => $coefficient,
             'nbjour' => $nbjour,
             'idcategory' => $category,
-            'date' => now()
+            'daty' => $date
         );
+        $this->db->insert('rally', $data);
     }
 
     public function insert_vehicule($rally,$pilote,$copilote,$numero){
