@@ -17,7 +17,7 @@ class Admin extends CI_Controller{
 			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
 			$data['participants'] = $this->Fonction_m->getParticipant();
 			$data['rally'] = $this->Fonction_m->getNomRally();
-			$data['vehicule'] = $this->Fonction_m->getVehicule();
+			$data['vehicule'] = $this->Fonction_m->getcarcategory();
             $this->load->view('admin/header',$data);
 			$this->load->view('admin/ajoutvehicule',$data);
 			$this->load->view('admin/footer');
@@ -39,6 +39,34 @@ class Admin extends CI_Controller{
 		}
 	}
 
+	public function point($id){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');  
+			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
+			$data['pointetrally'] = $this->Fonction_m->getPointEtRally();
+			$point=12;
+			$this->Fonction_m->modifpoint($id,$point);
+            $this->load->view('admin/header',$data);
+			$this->load->view('admin/modifpoint',$data);
+			$this->load->view('admin/footer');
+		}else{
+			$this->load->view('admin/login');
+		}
+	}
+
+	public function lienclass(){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');  
+			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
+			$data['pointetrally'] = $this->Fonction_m->getPointEtRally();
+            $this->load->view('admin/header',$data);
+			$this->load->view('admin/pagepoint',$data);
+			$this->load->view('admin/footer');
+		}else{
+			$this->load->view('admin/login');
+		}
+	}
+
 	public function tempsfin(){
 		if($this->session->userdata('email')){
 			$this->load->model('Fonction_m');
@@ -47,6 +75,20 @@ class Admin extends CI_Controller{
 			$data['pointetrally'] = $this->Fonction_m->getPointEtRally();
 			$this->load->view('admin/header',$data);
 			$this->load->view('admin/ajouttempsfin',$data);
+			$this->load->view('admin/footer');
+		}else{
+			$this->load->view('admin/login');
+		}
+	}
+
+	public function abandon(){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');
+			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
+			//$data['pointrally'] = $this->Fonction_m->getPointRally();
+			$data['pointetrally'] = $this->Fonction_m->getPointEtRally();
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/abandon',$data);
 			$this->load->view('admin/footer');
 		}else{
 			$this->load->view('admin/login');
@@ -67,6 +109,88 @@ class Admin extends CI_Controller{
 		}
 	}
 
+	public function gestPoint4RM(){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');
+			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
+			//$data['pointrally'] = $this->Fonction_m->getPointRally();
+			$data['listeClassement4RM']=$this->Fonction_m->getClassement4RM();
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/point4RM',$data);
+			$this->load->view('admin/footer');
+		}else{
+			$this->load->view('admin/login');
+		}
+	}
+
+	public function gestPoint2RM(){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');
+			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
+			//$data['pointrally'] = $this->Fonction_m->getPointRally();
+			//$data['listeClassement2RM']=$this->Fonction_m->getClassement2RM();
+			$data['modpointrally'] = $this->Fonction_m->getNomRally();
+			$data['cat'] = $this->Fonction_m->getCategory();
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/point2RM',$data);
+			$this->load->view('admin/footer');
+		}else{
+			$this->load->view('admin/login');
+		}
+	}
+
+	public function getrecherche(){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');
+			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
+			//$data['pointrally'] = $this->Fonction_m->getPointRally();
+			//$data['listeClassement2RM']=$this->Fonction_m->getClassement2RM();
+			$data['modrally2'] = $this->Fonction_m->getsearchnom($this->input->post('mod'),$this->input->post('jo'),$this->input->post('cat'));
+			$data['day']=$this->input->post('jo');
+			$data['cate']=$this->input->post('cat');
+			$data['ral']=$this->input->post('mod');
+			$data['coef']=$this->input->post('mod');
+			$data['nbjour']=$this->input->post('mod');
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/point2',$data);
+			$this->load->view('admin/footer');
+		}else{
+			$this->load->view('admin/login');
+		}
+
+	}
+
+	public function ajoutpoint($id,$rang,$rally){
+		if($this->session->userdata('email')){
+			$this->load->model('Fonction_m');
+			$data['email'] = $this->Fonction_m->getadminemail($this->session->userdata('id'));
+			$this->load->model('Fonction_m');  
+			//$data['pointrally'] = $this->Fonction_m->getPointRally();
+			//$data['listeClassement2RM']=$this->Fonction_m->getClassement2RM();
+
+			$coef=$this->Fonction_m->getcoef($rally);
+			if ($rang==1){
+				$point = 10*$coef;
+			}elseif($rang==2){
+				$point = 6*$coef;
+			}elseif($rang==3){
+				$point = 4*$coef;
+			}elseif($rang==4){
+				$point = 2*$coef;
+			}elseif($rang==5){
+				$point = 1*$coef;
+			}else{
+				$point=0;
+			}
+			$this->Fonction_m->modifpoint($id,$point);
+			
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/attributpoint',$data);
+			$this->load->view('admin/footer');
+		}else{
+			$this->load->view('admin/login');
+		}
+	}
     
     public function login(){
 		$this->load->view('admin/login');
@@ -113,7 +237,7 @@ class Admin extends CI_Controller{
 
 	public function getVehicules($id){
 		$this->load->model('Fonction_m');
-		$this->Fonction_m->getVehicule($id);
+		$this->Fonction_m->getcarcategory($id);
 	}
 
 	public function getCategorys($id){
@@ -139,6 +263,15 @@ class Admin extends CI_Controller{
 	}
 
 	public function addvehicule(){
+		/*$this->load->library('form_validation');
+
+		$this->form_validation->set_rules("modrally","Mode de rally","required");
+		$this->form_validation->set_rules("coefficient","Coefficient","required|numeric");
+		$this->form_validation->set_rules("journ","Jour","required");
+
+		if($this->form_validation->run()==true){
+
+		}*/
 		if($this->session->userdata('email')){
 			$this->load->model('Fonction_m');  
 			$this->Fonction_m->insert_vehicule($this->input->post('rally'),$this->input->post('participant1'),$this->input->post('participant2'),$this->input->post('numero'));

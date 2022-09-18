@@ -47,8 +47,8 @@ CREATE TABLE pointrally(
 	id SERIAL NOT NULL PRIMARY KEY,
 	FOREIGN KEY (pilote) REFERENCES participant(id),
 	FOREIGN KEY (copilote) REFERENCES participant(id),
+	FOREIGN KEY (numerovehicule) REFERENCES vehicule(numero),
 	FOREIGN KEY (idrally) REFERENCES rally(id),
-	FOREIGN KEY (numerovehicule) REFERENCES vehicule(numero)
 );
 
 CREATE TABLE jour(
@@ -60,3 +60,9 @@ CREATE TABLE jour(
 	FOREIGN KEY (idpointrally) REFERENCES pointrally(id)
 );
 
+CREATE TABLE totalpointjour(
+	id SERIAL NOT NULL PRIMARY KEY,
+	idjour INT NOT NULL,
+	point INT,
+	FOREIGN KEY (idjour) REFERENCES jour(idjour)
+);

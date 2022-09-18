@@ -31,9 +31,9 @@
 					</tr>
 				</thead>
 				<tbody>
-                <?php if(count($listeClassement)>0) { 
+                <?php if(count($listeClassement4RM)>0) { 
                     $i=1;
-                    foreach ($listeClassement as $row){?>
+                    foreach ($listeClassement4RM as $row){?>
                     <tr>
                         <td style="color:white;"><?php echo $i ?></td>
                         <?php $i++ ?>
@@ -42,10 +42,10 @@
                         <td style="color:white;"><?=$row->nomrally?></td>
                         <td style="color:white;"><?=$row->category?></td>
                         <td style="color:white;"><?=$this->Fonction_m->getPseudoParticipant($row->pilote)?></td>
-                        <td style="color:white;"><?= $this->Fonction_m->getPseudoParticipant($row->copilote)?></td>
+                        <td style="color:white;"><?=$this->Fonction_m->getPseudoParticipant($row->copilote)?></td>
                         <td style="color:white;"><?=$row->temps?></td>
                         <td style="color:white;"><?=$row->point?></td>
-                        <td><a href="<?php echo base_url()?>admin/point/<?php echo $row->idjour?>"><button class="btn btn-warning">Modifier</button>
+                        <td><a href=""><button class="btn btn-warning">Modifier</button>
                     </tr>
                 <?php }}else{ echo '<span style="color:white;">Aucun classement pour le moment.</span>';} ?>    
 				</tbody>

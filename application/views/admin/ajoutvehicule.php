@@ -34,9 +34,9 @@
                             <label for="">Mode de rallye:</label>
                                 <div class="form-select" id="default-select">
                                     <select id="rally" name="rally">
-                                        <option value ="0" >choisir</option>
+                                        <option value ="0" >mode</option>
                                             <?php foreach($rally as $row) { ?>
-                                        <option value="<?php echo $row->id?>"><?php echo $row->nomrally?></option>
+                                        <option value="<?php echo $row->id?>"><?php echo $row->nomrally?> </option>
                                             <?php } ?>
                                     </select>
                                 </div>
@@ -45,7 +45,7 @@
                             <label for="">Pilote:</label>
                                 <div class="form-select" id="default-select">
                                     <select id="participant" name="participant1">
-                                        <option value ="0" >choisir</option>
+                                        <option value ="0" >pilote</option>
                                             <?php foreach($participants as $row) { ?>
                                         <option value="<?php echo $row->id?>"><?php echo $row->username?></option>
                                             <?php } ?>
@@ -56,7 +56,7 @@
                             <label for="">Copilote:</label>
                                 <div class="form-select" id="default-select">
                                     <select id="participant" name="participant2">
-                                        <option value ="0" >choisir</option>
+                                        <option value ="0" >copilote</option>
                                             <?php foreach($participants as $row) { ?>
                                         <option value="<?php echo $row->id?>"><?php echo $row->username?></option>
                                             <?php } ?>
@@ -67,9 +67,9 @@
                             <label for="">Numero du vehicule:</label>
                                 <div class="form-select" id="default-select">
                                     <select id="numero" name="numero">
-                                        <option value ="0" >choisir</option>
+                                        <option value ="0" >numero</option>
                                             <?php foreach($vehicule as $row) { ?>
-                                        <option value="<?php echo $row->numero?>"><?php echo $row->numero?></option>
+                                        <option value="<?php echo $row->numero?>"><?php echo $row->numero?> [categorie:<?php echo $row->category?>]</option>
                                             <?php } ?>
                                     </select>
                                 </div>

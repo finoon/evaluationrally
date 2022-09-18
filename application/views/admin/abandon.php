@@ -41,23 +41,15 @@
                                     </select>
                                 </div>
                         </div>
-                        <div class="form-group <?=form_error('temps') ? 'has-error':null?>">
-							<label for="">Temps de fin:</label>
-							<input type="time" step="0.001" name="temps" value="<?=set_value('temps')?>" class="form-control">
-							<span class="help-block"><?=form_error('temps')?></span> 
-						</div>
                         <div class="form-group <?=form_error('jour') ? 'has-error':null?>">
 							<label for="">Jour:</label>
 							<input type="number" min="1" name="jour" value="<?=set_value('jour')?>" class="form-control">
 							<span class="help-block"><?=form_error('jour')?></span> 
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-success btn-flat">Ajouter</button>
+							<button type="submit" class="btn btn-danger btn-flat">Abandon</button>
 						</div>
 					</form>
-					<div class="form-group">
-							<a href="abandon"><button type="submit" class="btn btn-danger btn-flat">Abandon</button>
-						</div>
 				</div>
 			</div>
 		</div>

@@ -20,8 +20,8 @@ insert into participant values(19,'Eddy cordo','Rastaman');
 insert into participant values(20,'Haja Raholiharivelo','Loduc');
 
 
-insert into category values(1,'4RM');
-insert into category values(2,'2RM');
+insert into category values('4RM',1);
+insert into category values('2RM',2);
 
 insert into vehicule values(1,1);
 insert into vehicule values(2,2);
@@ -62,7 +62,14 @@ insert into vehicule values(2,36);
 insert into vehicule values(1,37);
 insert into vehicule values(2,38);
 
+insert into admin values(1,'admin@gmail.com',md5('admin'));
 
-insert into rally values(1,'Rally Special 1',2,2,1,'2022-09-13');
+insert into users values(1,'user','user','user@gmail.com',md5('user'));
+
+
+/*insert into rally values(1,'Rally Special 1',2,2,1,'2022-09-13');
 
 insert into pointrally values(1,1,1,'20:00:02',0,11,13,1);
+
+SELECT totalpointjour.id,totalpointjour.idjour,rally.nbjour,rally.nomrally,category.category,jour.jour,pointrally.pilote,pointrally.copilote,vehicule.numero,jour.temps,rally.coefficientrally*jour.point as totalparjour,totalpointjour.point from pointrally join vehicule on vehicule.numero=pointrally.numerovehicule join category on category.id=vehicule.idcategory join rally on rally.id=pointrally.idrally join participant on participant.id=pointrally.copilote join jour on pointrally.id=jour.idpointrally join totalpointjour on jour.idjour=totalpointjour.idjour where pointrally.numerovehicule=1 and rally.id=3 and category.id=1 
+*/

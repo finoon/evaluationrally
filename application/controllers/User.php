@@ -108,4 +108,51 @@ class User extends CI_Controller{
 			}
 		}
 	}
+
+    public function logout(){
+		if($this->session->userdata('name')){
+			$this->session->unset_userdata('id'); 
+			$this->session->unset_userdata('email'); 
+			$this->session->unset_userdata('name');
+
+			$this->load->view('frontoffice/login');
+		}else{
+			$this->load->view('frontoffice/login');
+		}
+	}
+
+	public function getrecherche(){
+		if($this->session->userdata('idUser')){
+			$this->load->model('Fonction_m');  
+			//$data['pointrally'] = $this->Fonction_m->getPointRally();
+			//$data['listeClassement2RM']=$this->Fonction_m->getClassement2RM();
+			$data['modpointrally'] = $this->Fonction_m->getNomRally();
+			$data['cat'] = $this->Fonction_m->getCategory();
+			$data['modrally'] = $this->Fonction_m->getsearchnom($this->input->post('mod'),$this->input->post('jo'),$this->input->post('cat'));
+			$data['day']=$this->input->post('jo');
+			$data['cate']=$this->input->post('cat');
+			$data['ral']=$this->input->post('mod');
+			$this->load->view('frontoffice/header',$data);
+			$this->load->view('frontoffice/point2RM',$data);
+			$this->load->view('frontoffice/footer');
+		}else{
+			$this->load->view('frontoffice/login');
+		}
+
+	}
+
+	public function gestPoint2RM(){
+		if($this->session->userdata('idUser')){
+			$this->load->model('Fonction_m');
+			//$data['pointrally'] = $this->Fonction_m->getPointRally();
+			//$data['listeClassement2RM']=$this->Fonction_m->getClassement2RM();
+			$data['modpointrally'] = $this->Fonction_m->getNomRally();
+			$data['cat'] = $this->Fonction_m->getCategory();
+			$this->load->view('frontoffice/header',$data);
+			$this->load->view('frontoffice/point2',$data);
+			$this->load->view('frontoffice/footer');
+		}else{
+			$this->load->view('frontoffice/login');
+		}
+	}
 }

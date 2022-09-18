@@ -113,7 +113,7 @@
                         <a href="<?=site_url('admin/index')?>"><i class="fa fa-users"></i> <span>Ajouter une equipe</span></a>
                     </li>
                     <li>
-                        <a href="<?=site_url('admin/rally')?>"><i class="fa fa-archive"></i> <span>Ajouter un rallye</span></a>
+                        <a href="<?=site_url('admin/rally')?>"><i class="fa fa-car"></i> <span>Ajouter un rallye</span></a>
                     </li>
                     <li>
                         <a href="<?php echo base_url()?>admin/tempsfin">
@@ -121,7 +121,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url()?>admin/gestPoint?>">
+                        <a href="<?=site_url('admin/lienclass')?>">
                             <i class="fa fa-users"></i> <span>Gestion de point</span>
                         </a>
                     </li>
